@@ -1,28 +1,26 @@
+from django.conf import settings
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
 from django.shortcuts import get_object_or_404
-from django.conf import settings
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import filters, mixins, status, viewsets
+from rest_framework import filters, mixins, serializers, status, viewsets
+from rest_framework.decorators import action
 from rest_framework.mixins import CreateModelMixin
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.permissions import AllowAny
 from rest_framework.pagination import LimitOffsetPagination
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.decorators import action
 from rest_framework.viewsets import GenericViewSet
 from rest_framework_simplejwt.tokens import AccessToken
-from reviews.models import Category, Genre, Title, User, Review
-from rest_framework import serializers
+from reviews.models import Category, Genre, Review, Title, User
 
 from .filter import TitleFilter
-from .permissions import Admin, IsAdminOrReadOnly, IsAdminModeratorOrReadOnly
-from .serializers import (CategorySerializer, CreateUserSerializer,
-                          GenreSerializer, TitleGetSerializer,
+from .permissions import Admin, IsAdminModeratorOrReadOnly, IsAdminOrReadOnly
+from .serializers import (CategorySerializer, CommentSerializer,
+                          CreateUserSerializer, GenreSerializer,
+                          ReviewSerializer, TitleGetSerializer,
                           TitlePostUpdateSerializer, TokenSerializer,
-                          UserMeSerializer, UserSerializer,
-                          ReviewSerializer, CommentSerializer)
+                          UserMeSerializer, UserSerializer)
 
 
 class GetTokenViewSet(APIView):
