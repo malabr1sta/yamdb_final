@@ -29,11 +29,9 @@ class CreateUserSerializer(serializers.ModelSerializer):
         return email
 
     def create(self, validated_data):
-        user = User.objects.create_user(
+        return User.objects.create_user(
             username=validated_data['username'],
-            email=validated_data['email'],
-        )
-        return user
+            email=validated_data['email'])
 
     class Meta:
         model = User
