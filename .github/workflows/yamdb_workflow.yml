@@ -52,6 +52,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
+            sudo docker pull glicin73/api_yamdb:2022
             docker-compose stop
             docker-compose rm web
             touch .env
