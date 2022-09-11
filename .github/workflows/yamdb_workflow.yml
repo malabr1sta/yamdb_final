@@ -39,5 +39,4 @@ jobs:
         with:
           push: true
           context: ./api_yamdb
-          file: api_yamdb/Dockerfile
           tags: glicin73/api_yamdb:2022     
