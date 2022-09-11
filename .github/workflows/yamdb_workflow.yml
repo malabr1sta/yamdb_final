@@ -38,6 +38,6 @@ jobs:
         uses: docker/build-push-action@v2 
         with:
           push: true
-          context: .
+          context: ./api_yamdb
           file: api_yamdb/Dockerfile
           tags: glicin73/api_yamdb:2022     
